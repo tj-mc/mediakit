@@ -1,0 +1,13 @@
+{
+  "name": "mediakit",
+  "version": "1.0.0",
+  "description": "Easily control media elements on a webpage.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "terser mediakit.js -o ../dist/mediakit.js --mangle --compress --module",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas McIntosh",
+  "license": "MIT"
+}

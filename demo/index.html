@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="module" src="../src/mediakit.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>
+    mediakit
+</h1>
+<p>
+    A powerful and simple interface for controlling media on web pages.
+</p>
+
+<audio id="player1" src="resources/music.m4a" controls></audio>
+<audio id="player2" src="resources/music.m4a" controls></audio>
+
+<button onclick="play1()">Play 1</button>
+<button onclick="play2()">Play 2</button>
+<button onclick="pauseAll()">Pause All</button>
+
+<script type="module">
+
+    const mk = window.mediakit;
+
+    mk.create(
+        [
+            {type: 'audio', selector: '#player1', name: 'audio1'},
+            {type: 'audio', selector: '#player2', name: 'audio2'}
+        ],
+        {
+            playExclusive: true,
+            log: true
+        }
+    )
+
+    window.play1 = () => {
+        mk.play('audio1')
+    }
+
+    window.play2 = () => {
+        mk.play('audio2')
+    }
+
+    window.pauseAll = () => {
+        mk.pauseAll()
+    }
+
+</script>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    audio {
+        margin: 1rem
+    }
+
+    button {
+        margin: 1rem
+    }
+</style>
+</body>
+</html>
