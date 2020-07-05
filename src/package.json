@@ -1,6 +1,6 @@
 {
   "name": "mediakitjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easily control media elements on a webpage.",
   "main": "mediakit.js",
   "type": "module",
@@ -9,6 +9,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thomas McIntosh",
-  "license": "MIT",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "license": "MIT"
 }
