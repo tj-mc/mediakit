@@ -1,8 +1,6 @@
 # mediakit
 A powerful and simple interface for controlling media on web pages.
 
-
-
 #### Problem
 Many websites require embedded audio and video, either through HTML5 players or third party iFrames. However, managing these players can be difficult. Many audio players and iFrames can play at once, and each type of media has a different API, leading to an unpleasent experience for the user and developer.
 
