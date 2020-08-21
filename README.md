@@ -3,7 +3,7 @@ A powerful and simple interface for controlling media on web pages.
 
 ![minified size](https://img.shields.io/bundlephobia/min/mediakitjs?style=flat-square) ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
 
-![mediakit](logo.jpg)
+![mediakit](./logo.jpg)
 
 #### Problem
 Many websites require embedded audio and video, either through HTML5 players or third party iFrames. However, managing these players can be difficult. Many audio players and iFrames can play at once, and each type of media has a different API, leading to an unpleasent experience for the user and developer.
@@ -22,9 +22,9 @@ import mk from 'mediakitjs';
 
 **cdn**
 
-Load from `https://cdn.jsdelivr.net/npm/mediakitjs@1.0.1/mediakit.min.js`
+Load from `https://cdn.jsdelivr.net/npm/mediakitjs@1.1.1/mediakit.js`
 ```$xslt
-<script type="module" src="https://cdn.jsdelivr.net/npm/mediakitjs@1.0.1/mediakit.min.js></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/mediakitjs@1.1.1/mediakit.js</script>
 
 <script>
     const mk = window.mediakit;
