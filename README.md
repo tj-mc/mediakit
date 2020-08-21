@@ -66,6 +66,6 @@ mk.create(
 ```
 #### Supported 
 - [x] HTML5 Audio
-- [ ] HTML5 Video
+- [x] HTML5 Video
 - [ ] YouTube
-- [ ] Vimeo 
+- [x] Vimeo 
