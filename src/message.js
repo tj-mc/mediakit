@@ -1,9 +1,5 @@
-const emoji = {
-    sparkle: String.fromCodePoint(0x2728),
-    thinking: String.fromCodePoint(0x1F4AC),
-    error: String.fromCodePoint(0x1F6AB),
-    magnify: String.fromCodePoint(0x1F50D)
-}
+import {log} from "./log";
+import {emoji} from "./emoji";
 
 export const message = {
     success: {
@@ -26,6 +22,9 @@ export const message = {
         },
         couldNotFindItem: (name, method, advice='') => {
             log(emoji.magnify, `Could not find media item with name '${name}' inside method '${method}'. ${advice}`, 'error')
+        },
+        couldNotCreateInstance: (name, method, advice='') => {
+            log(emoji.error, `Could not create an item instance with name '${name}' inside method '${method}'. ${advice}`, 'error')
         }
     }
 }

@@ -1,10 +1,11 @@
 import {message} from "./message";
+import {store} from "./store";
 
 /**
  * Find an item in the library by name.
  * @param name {string}
  */
-export const findItem = name => {
+export const findItem = (name) => {
     const targetItem = store.library.find(item => {
         return item.name === name;
     })

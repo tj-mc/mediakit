@@ -1,9 +1,9 @@
+import {mkAudio} from "./mediaTypes/mkAudio.js";
+import {mkVideo} from "./mediaTypes/mkVideo";
+import {store} from "./store";
 import {message} from "./message";
-import {findItem} from "./findItem";
-import {mkAudio} from "./mediaTypes/mkAudio";
+import {pause, pauseAllExcept, play, stop, pauseAll} from "./controls";
 
-// The library contains all the media elements on the page
-const store = {}
 
 /**
  * Create the mediakit
@@ -18,8 +18,10 @@ const create = (mediaList, options = {}) => {
     // Save all the media items to the store.library
     store.library = mediaList;
 
+    let createdElements = 0;
+
     // Populate the library
-    store.library.forEach(item => {
+    mediaList.forEach(item => {
 
         // Each item must have at least a selector and type
         if (!item.type) {
@@ -43,20 +45,38 @@ const create = (mediaList, options = {}) => {
 
         // If we could not find this element
         if (!element) {
-            message.error.badSelector(item.selector, 'create', 'Is this a standard query selector?')
-        }
+            message.error.badSelector(item.selector, 'create', 'Is this a valid query selector?')
+        } else {
 
-        // Here we'll create an instance of the correct class
-        switch (item.type) {
-            case 'audio':
-                item.instance = new mkAudio(item.selector);
-                break;
-        }
+            try {
 
+                // Here we'll create an instance of the correct class
+                switch (item.type) {
+                    case 'audio':
+                        item.instance = new mkAudio(item);
+                        break;
+                    case 'video':
+                        item.instance = new mkVideo(item);
+                        break;
+                    default:
+                        throw new Error()
+                }
+
+                createdElements ++;
+
+            } catch (e) {
+
+                message.error.couldNotCreateInstance(item.name, 'create', 'Is this a supported media type?')
+
+            }
+        }
     })
 
     const length = store.library.length;
-    message.success.created(length)
+
+    if (createdElements === length) {
+        message.success.created(length)
+    }
 
 }
 
@@ -67,63 +87,7 @@ const makeConfig = options => {
     }
 }
 
-/**
- * Play an item.
- * config.playExclusive will determine if other players are paused as part of this action.
- * @param name {string}
- */
-export const play = name => {
-    console.log(name)
-    if (store.config.playExclusive) {
-        pauseAllExcept(name)
-    }
-    const item = findItem(name)
-    item.instance.play(item)
-}
 
-/**
- * Pause an item.
- * @param name {string}
- */
-export const pause = name => {
-    const item = findItem(name)
-    item.instance.pause(item)
-}
-
-/**
- * Stop an item.
- * @param name {string}
- */
-export const stop = name => {
-    const item = findItem(name)
-    item.instance.stop(item)
-}
-
-/**
- * Pause all items except one.
- * @param name {string}
- */
-export const pauseAllExcept = name => {
-
-    if (name) {
-        store.library.forEach(item => {
-            if (name !== item.name) {
-                item.controls.pause(item)
-            }
-        })
-    } else {
-        message.error.missingArg('name', 'pauseAllExcept')
-    }
-}
-
-/**
- * Pause all items in the library.
- */
-export const pauseAll = () => {
-    store.library.forEach(item => {
-        item.controls.pause(item)
-    })
-}
 
 /**
  * If a value was supplied in the options param of create(),
@@ -136,11 +100,13 @@ const booleanConfig = (configItem, defaultValue) => {
     return typeof configItem === "boolean" ? configItem : defaultValue;
 }
 
-export const mk = {
-    create,
+
+export default {
     play,
     pause,
-    pauseAll,
     pauseAllExcept,
-    stop
+    stop,
+    pauseAll,
+    create,
+    store
 }

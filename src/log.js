@@ -1,4 +1,6 @@
-const log = (emoji, message, type='warn') => {
+import {store} from "./store";
+
+export const log = (emoji, message, type='warn') => {
 
     const logStyles = {
         header:

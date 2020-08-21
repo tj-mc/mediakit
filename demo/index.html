@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="module" src="../src/mediakit.js"></script>
+    <script src="../dist/mediakit.js"></script>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>mediakit</title>
@@ -15,12 +15,13 @@
     A powerful and simple interface for controlling media on web pages.
 </p>
 
-<audio id="player1" src="resources/music.m4a" controls></audio>
-<audio id="player2" src="resources/music.m4a" controls></audio>
+<audio id="audio1" src="resources/music.m4a" controls></audio>
+<audio id="audio2" src="resources/music.m4a" controls></audio>
 
-<button onclick="play1()">Play 1</button>
-<button onclick="play2()">Play 2</button>
-<button onclick="pauseAll()">Pause All</button>
+<video id="video1" src="resources/video.mp4" controls></video><br>
+<video id="video2" src="resources/video.mp4" controls></video>
+
+<button onclick="pauseEverything()">Pause All</button>
 
 <script type="module">
 
@@ -28,8 +29,10 @@
 
     mk.create(
         [
-            {type: 'audio', selector: '#player1', name: 'audio1'},
-            {type: 'audio', selector: '#player2', name: 'audio2'}
+            {type: 'audio', selector: '#audio1'},
+            {type: 'audio', selector: '#audio2'},
+            {type: 'video', selector: '#video1'},
+            {type: 'video', selector: '#video2'},
         ],
         {
             playExclusive: true,
@@ -37,15 +40,8 @@
         }
     )
 
-    window.play1 = () => {
-        mk.play('audio1')
-    }
 
-    window.play2 = () => {
-        mk.play('audio2')
-    }
-
-    window.pauseAll = () => {
+    window.pauseEverything = () => {
         mk.pauseAll()
     }
 
