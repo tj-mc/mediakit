@@ -11,7 +11,8 @@
   "author": "Thomas McIntosh",
   "license": "MIT",
   "dependencies": {
-    "@vimeo/player": "^2.12.2"
+    "@vimeo/player": "^2.12.2",
+    "yt-player": "^3.4.3"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^9.0.0",
