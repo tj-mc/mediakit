@@ -5,9 +5,15 @@
   "main": "dist/mediakit.js",
   "type": "module",
   "scripts": {
-    "build": "rollup src/index.js --file dist/mediakit.js --format umd --name 'mediakit'",
+    "build": "rollup --config",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thomas McIntosh",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@vimeo/player": "^2.12.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^9.0.0"
+  }
 }

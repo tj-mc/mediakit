@@ -3,6 +3,7 @@ import {mkVideo} from "./mediaTypes/mkVideo";
 import {store} from "./store";
 import {message} from "./message";
 import {pause, pauseAllExcept, play, stop, pauseAll} from "./controls";
+import {mkVimeo} from "./mediaTypes/mkVimeo";
 
 
 /**
@@ -57,6 +58,9 @@ const create = (mediaList, options = {}) => {
                         break;
                     case 'video':
                         item.instance = new mkVideo(item);
+                        break;
+                    case 'vimeo':
+                        item.instance = new mkVimeo(item);
                         break;
                     default:
                         throw new Error()
