@@ -15,7 +15,7 @@ export const log = (emoji, message, type='warn') => {
     }
 
     if ((type === 'warn') && store.config.log) {
-        console.log(
+        console.warn(
             // Message
             `%cmediakit%c${emoji}%c${message}`,
 
@@ -32,7 +32,7 @@ export const log = (emoji, message, type='warn') => {
             logStyles.text
         )
     } else if (type === 'error') {
-        console.trace(
+        console.error(
             // Message
             `%cmediakit%c${emoji}%c${message}`,
 

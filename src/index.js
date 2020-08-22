@@ -5,7 +5,6 @@ import {message} from "./message";
 import {pause, pauseAllExcept, play, stop, pauseAll} from "./controls";
 import {mkVimeo} from "./mediaTypes/mkVimeo";
 
-
 /**
  * Create the mediakit
  * @param mediaList
@@ -46,7 +45,7 @@ const create = (mediaList, options = {}) => {
 
         // If we could not find this element
         if (!element) {
-            message.error.badSelector(item.selector, 'create', 'Is this a valid query selector?')
+            message.error.badSelector(item.selector, 'create', 'Ensure this element exists in the DOM.')
         } else {
 
             try {
@@ -78,10 +77,7 @@ const create = (mediaList, options = {}) => {
 
     const length = store.library.length;
 
-    if (createdElements === length) {
-        message.success.created(length)
-    }
-
+    if (createdElements === length) message.success.created(length);
 }
 
 const makeConfig = options => {
@@ -90,8 +86,6 @@ const makeConfig = options => {
         log: booleanConfig(options.log, false)
     }
 }
-
-
 
 /**
  * If a value was supplied in the options param of create(),
@@ -104,13 +98,11 @@ const booleanConfig = (configItem, defaultValue) => {
     return typeof configItem === "boolean" ? configItem : defaultValue;
 }
 
-
-export default {
+export {
     play,
     pause,
     pauseAllExcept,
     stop,
     pauseAll,
-    create,
-    store
+    create
 }

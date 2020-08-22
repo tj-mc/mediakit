@@ -1,7 +1,7 @@
 # mediakit
 A powerful and simple interface for controlling media on web pages.
 
-![minified size](https://img.shields.io/bundlephobia/min/mediakitjs?style=flat-square) ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
+![minified size](https://img.shields.io/github/size/tj-mc/mediakit/dist/mediakit.js?label=bundle%20minified) ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
 
 ![mediakit](./logo.jpg)
 

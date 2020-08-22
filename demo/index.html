@@ -27,7 +27,7 @@
 <iframe id="vimeo2" src="https://player.vimeo.com/video/449125816" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 <p><a href="https://vimeo.com/449125816">Malpelo: An Expedition</a> from <a href="https://vimeo.com/victoriarivera">Victoria Rivera</a> on <a href="https://vimeo.com">Vimeo</a>.</p><br>
 
-<button onclick="pauseEverything()">Pause All</button>
+<button onclick="onButtonPress()">Pause All</button>
 
 <script type="module">
 
@@ -48,8 +48,7 @@
         }
     )
 
-
-    window.pauseEverything = () => {
+    window.onButtonPress = () => {
         mk.pauseAll()
     }
 

@@ -25,6 +25,6 @@ export const message = {
         },
         couldNotCreateInstance: (name, method, advice='') => {
             log(emoji.error, `Could not create an item instance with name '${name}' inside method '${method}'. ${advice}`, 'error')
-        }
+        },
     }
 }
