@@ -1,3 +1,9 @@
+/**
+ * @package mediakitjs
+ * @author Tom McIntosh https://github.com/tj-mc
+ * @licence MIT
+ */
+
 import {mkAudio} from "./mediaTypes/mkAudio.js";
 import {mkVideo} from "./mediaTypes/mkVideo";
 import {store} from "./store";
