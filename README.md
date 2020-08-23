@@ -1,9 +1,7 @@
-# mediakit
+# mediakit ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
+
 A powerful and simple interface for controlling media on web pages.
 
-![minified size](https://img.shields.io/github/size/tj-mc/mediakit/dist/mediakit.js?label=bundle%20minified) ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
-
-![mediakit](./logo.jpg)
 
 #### Problem
 Many websites require embedded audio and video, either through HTML5 players or third party iFrames. However, managing these players can be difficult. Many audio players and iFrames can play at once, and each type of media has a different API, leading to an unpleasent experience for the user and developer.
@@ -16,15 +14,15 @@ mediakit aims to provide a simple interface for controlling all the media item o
 > npm i mediakitjs
 ```
 ```$xslt
-import mk from 'mediakitjs';
+import { create, play, pauseAll } from 'mediakitjs';
 ```
 
 
 **cdn**
 
-Load from `https://cdn.jsdelivr.net/npm/mediakitjs@1.1.1/mediakit.js`
+Load from `https://cdn.jsdelivr.net/npm/mediakitjs@1.2.0/dist/mediakit.min.js`
 ```$xslt
-<script type="module" src="https://cdn.jsdelivr.net/npm/mediakitjs@1.1.1/mediakit.js</script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/mediakitjs@1.2.0/dist/mediakit.min.js</script>
 
 <script>
     const mk = window.mediakit;
@@ -33,12 +31,37 @@ Load from `https://cdn.jsdelivr.net/npm/mediakitjs@1.1.1/mediakit.js`
 
 ### Usage
 You need to give mediakit an object containing a [query selector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector), type and name for each media item.
-`type` and `selector` are required. If no name is supplied, the selector string becomes the name (including #'s and .'s).
+`type` and `selector` are required. If no name is supplied, the selector string becomes the name (including `#`'s and `.`'s).
+
 ```$xslt
-mk.create([
-    { type: 'audio', selector: '#player1', name: 'audio1' },
-    { type: 'audio', selector: '#player2', name: 'audio2' },
-])
+
+<audio id="audio1" src="resources/music.m4a" controls></audio>
+<video id="video1" src="resources/video.mp4" controls></video><br>
+<iframe id="vimeo1" src="{vimeo url}" width="640" height="360"></iframe>
+
+mk.create(
+    [
+        {type: 'audio', selector: '#audio1'},
+        {type: 'video', selector: '#video1'},
+        {type: 'vimeo', selector: '#vimeo1'},
+    ],
+)
+```
+
+### YouTube Usage
+For Vimeo, Video, and Audio, mediakit receives a reference to the existing iFrame or media element on the page.
+To include a YouTube video, you must pass a selector to an empty `div` or `span` that you want to be replaced with the YouTube iFrame.
+This is due to the design of the YouTube iFrame API, which requires us to register the iFrame on creation. Provide the videoId in the `config` property.
+```
+<div id="#youtube1"></div>
+
+...
+
+mk.create(
+    [
+        {type: 'youtube', selector: '#youtube1', config: {videoId: '4eM12LJi_rg'}},
+    ],
+)
 ```
 
 ### Methods
@@ -50,13 +73,15 @@ mk.pauseAllExcept(name)  <--- Pause all items except one
 mk.pauseAll()   <------------ Pause all items
 ```
 
-### Config
+### Configuration
 `create()` accepts a second argument for configuration. The example below shows the default values of these properties.
 ```$xslt
 mk.create(
     [
-        { type: 'audio', selector: '#player1', name: 'audio1' },
-        { type: 'audio', selector: '#player2', name: 'audio2' },
+        {type: 'audio', selector: '#audio1'},
+        {type: 'video', selector: '#video2'},
+        {type: 'vimeo', selector: '#vimeo2'},
+        {type: 'youtube', selector: '#youtube1', config: {videoId: '4eM12LJi_rg'}},
     ],
     {
         playExclusive: true,
@@ -67,5 +92,5 @@ mk.create(
 #### Supported 
 - [x] HTML5 Audio
 - [x] HTML5 Video
-- [ ] YouTube
+- [x] YouTube
 - [x] Vimeo 
