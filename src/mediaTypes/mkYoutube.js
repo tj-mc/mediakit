@@ -1,40 +1,36 @@
 import {message} from "../message";
 import {store} from "../store";
 import {pauseAllExcept} from "../controls";
-const YTPlayer = require('yt-player')
+import {YouTubePlayer} from "yt-player-es";
 
-export class mkVimeo {
+export class mkYoutube {
 
     constructor(item) {
 
+        // Store item data
         this.item = item;
 
         // Find this element in the DOM
-        let domReference = this.find()
+        this.domRef = document.querySelector(this.item.selector);
 
-        if (!domReference) {
-            message.error.badSelector(this.item.selector, 'mkAudio.constructor()', 'Is this a valid query selector?')
+        // Show error if not found
+        this.domRef || message.error.badSelector(this.item.selector, 'mkAudio.constructor()', 'Is this a valid query selector?');
+
+        // Create player
+        this.player = new YouTubePlayer(this.item.selector, this.item.config);
+
+        // Try to load the youtube video
+        try {
+            this.player.load(this.item.config.videoId)
+        } catch (e) {
+            message.error.couldNotCreateInstance(this.item.name, 'mkYoutube.constructor()', 'Did you supply a video ID?')
         }
 
-        this.domRef = domReference;
-        this.player = new YTPlayer(this.item.selector)
+        // Register listeners
+        this.player.on('playing', () => this.onPlay());
+        this.player.on('paused', () => this.onPause());
+        this.player.on('ended', () => this.onStop());
 
-        this.player.on('play', () => {
-            this.onPlay()
-        })
-
-        this.player.on('pause', () => {
-            this.onPause()
-        })
-
-        this.player.on('ended', () => {
-            this.onStop()
-        })
-
-    }
-
-    find() {
-        return document.querySelector(this.item.selector)
     }
 
     play() {
@@ -54,7 +50,7 @@ export class mkVimeo {
     onPause() {}
 
     stop() {
-        this.player.pause()
+        this.player.stop()
     }
 
     onStop() {}

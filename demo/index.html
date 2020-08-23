@@ -27,6 +27,9 @@
 <iframe id="vimeo2" src="https://player.vimeo.com/video/449125816" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 <p><a href="https://vimeo.com/449125816">Malpelo: An Expedition</a> from <a href="https://vimeo.com/victoriarivera">Victoria Rivera</a> on <a href="https://vimeo.com">Vimeo</a>.</p><br>
 
+<div id="youtube1"></div><br>
+<div id="youtube2"></div>
+
 <button onclick="onButtonPress()">Pause All</button>
 
 <script type="module">
@@ -41,6 +44,8 @@
             {type: 'video', selector: '#video2'},
             {type: 'vimeo', selector: '#vimeo1'},
             {type: 'vimeo', selector: '#vimeo2'},
+            {type: 'youtube', selector: '#youtube1', config: {videoId: '4eM12LJi_rg'}},
+            {type: 'youtube', selector: '#youtube2', config: {videoId: '4eM12LJi_rg'}},
         ],
         {
             playExclusive: true,

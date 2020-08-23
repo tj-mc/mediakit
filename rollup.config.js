@@ -1,5 +1,5 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { terser } from "rollup-plugin-terser";
+import resolve from '@rollup/plugin-node-resolve';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export default {
     input: 'src/index.js',
@@ -9,12 +9,6 @@ export default {
             format: 'umd',
             name: 'mediakit'
         },
-        {
-            file: 'dist/mediakit.min.js',
-            format: 'umd',
-            name: 'mediakit',
-            plugins: [terser()]
-        },
     ],
-    plugins: [nodeResolve()]
+    plugins: [resolve(), nodePolyfills()]
 };

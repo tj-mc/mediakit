@@ -4,6 +4,7 @@ import {store} from "./store";
 import {message} from "./message";
 import {pause, pauseAllExcept, play, stop, pauseAll} from "./controls";
 import {mkVimeo} from "./mediaTypes/mkVimeo";
+import {mkYoutube} from "./mediaTypes/mkYoutube";
 
 /**
  * Create the mediakit
@@ -24,19 +25,13 @@ const create = (mediaList, options = {}) => {
     mediaList.forEach(item => {
 
         // Each item must have at least a selector and type
-        if (!item.type) {
-            message.error.missingArg('type', 'create', 'Make sure all your media items have a type.')
-        }
+        item.type || message.error.missingArg('type', 'create', 'Make sure all your media items have a type.');
 
         // You must specify a query selector for every item
-        if (!item.selector) {
-            message.error.missingArg('selector', 'create', 'Make sure all your media items have a query selector.')
-        }
+        item.selector || message.error.missingArg('selector', 'create', 'Make sure all your media items have a query selector.');
 
         // If we didn't get a name, use the selector instead
-        if (!item.name) {
-            item.name = item.selector
-        }
+        item.name || (item.name = item.selector);
 
         // Try to find an element for this selector
         // We won't keep this element, as each media type has it's own
@@ -61,6 +56,9 @@ const create = (mediaList, options = {}) => {
                     case 'vimeo':
                         item.instance = new mkVimeo(item);
                         break;
+                    case 'youtube':
+                        item.instance = new mkYoutube(item);
+                        break;
                     default:
                         throw new Error()
                 }
@@ -77,7 +75,7 @@ const create = (mediaList, options = {}) => {
 
     const length = store.library.length;
 
-    if (createdElements === length) message.success.created(length);
+    createdElements === length && message.success.created(length);
 }
 
 const makeConfig = options => {
