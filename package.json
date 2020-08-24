@@ -1,6 +1,6 @@
 {
   "name": "mediakitjs",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Easily control media elements on a webpage.",
   "main": "dist/mediakit.min.js",
   "type": "module",
