@@ -1,5 +1,6 @@
 ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square) ![size](https://badgen.net/bundlephobia/minzip/mediakitjs?style=flat-square)
-#💿 mediakit
+
+# 💿 mediakit
 
 Stop media elements from playing all at once. Control them with a set of universal functions.
 
