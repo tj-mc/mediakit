@@ -1,13 +1,24 @@
 {
   "name": "mediakitjs",
-  "version": "1.2.1",
-  "description": "Easily control media elements on a webpage.",
+  "version": "1.2.2",
+  "description": "Stop media from playing all at once.",
   "main": "dist/mediakit.min.js",
   "type": "module",
   "scripts": {
     "build": "rollup --config",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "media",
+    "audio",
+    "video",
+    "media control",
+    "media kit",
+    "remote",
+    "audio controller",
+    "audio pauser"
+  ],
+  "homepage": "https://github.com/tj-mc/mediakit",
   "author": "Thomas McIntosh",
   "license": "MIT",
   "dependencies": {
