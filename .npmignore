@@ -1,4 +1,5 @@
 rollup.config.js
-demo/
+docs/
+img/
 dist/mediakit.js
 .idea/
