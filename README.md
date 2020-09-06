@@ -1,6 +1,5 @@
-![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square) ![size](https://badgen.net/bundlephobia/minzip/mediakitjs?style=flat-square)
-#💿 mediakit
-
+![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square)  ![size](https://badgen.net/bundlephobia/minzip/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
+![mediakit](img/mediakitLogo.png)
 Stop media elements from playing all at once. Control them with a set of universal functions.
 
 #### 💭 Problem
@@ -39,16 +38,14 @@ You need to give mediakit an object containing a [query selector](https://develo
 ```$xslt
 
 <audio id="audio1" src="resources/music.m4a" controls></audio>
-<video id="video1" src="resources/video.mp4" controls></video><br>
+<video id="video1" src="resources/video.mp4" controls></video>
 <iframe id="vimeo1" src="{vimeo url}" width="640" height="360"></iframe>
 
-mk.create(
-    [
-        {type: 'audio', selector: '#audio1'},
-        {type: 'video', selector: '#video1'},
-        {type: 'vimeo', selector: '#vimeo1'},
-    ],
-)
+mk.create([
+    { type: 'audio', selector: '#audio1' },
+    { type: 'video', selector: '#video1' },
+    { type: 'vimeo', selector: '#vimeo1' },
+])
 ```
 
 ### 📺 YouTube Usage
@@ -60,21 +57,29 @@ This is due to the design of the YouTube iFrame API, which requires us to regist
 
 ...
 
-mk.create(
-    [
-        {type: 'youtube', selector: '#youtube1', config: {videoId: '4eM12LJi_rg'}},
-    ],
-)
+mk.create([
+    { type: 'youtube', selector: '#youtube1', config: { videoId: '4eM12LJi_rg' } },
+])
 ```
 
 ### 📖 Methods
-```$xslt
-mk.play(name)   <------------ Play an item
-mk.pause(name)  <------------ Pause an item
-mk.stop(name)   <------------ Stop playing an item
-mk.pauseAllExcept(name)  <--- Pause all items except one
-mk.pauseAll()   <------------ Pause all items
-```
+
+#### `play(name: string)`
+Play an element. If `config.playExclusive === true`, this method will pause all registered elements before playing the 
+target element.
+
+#### `pause(name: string)`
+Pause an element. 
+
+#### `stop(name: string)`
+Stop an element. Currently identical to `pause()`. In future versions, this method will pause the target element, then
+set its playback time to `0:00`. 
+
+#### `pauseAllExcept(name: string)`
+Pause all elements, except one. 
+
+#### `pauseAll(name: string)`
+Pause all elements.
 
 ### ⚙️ Configuration
 `create()` accepts a second argument for configuration. The example below shows the default values of these properties.
@@ -97,3 +102,11 @@ mk.create(
 - ✅ HTML5 Video
 - ✅ YouTube
 - ✅ Vimeo 
+
+
+### 🛣️ Roadmap
+- Add support for `seek()`
+- Implement `stop()`. Current version mirrors `pause()`
+- Emit mediakit events. eg: `mkPaused`, `mkPlayed` 
+- Host demo site
+- Add tests
