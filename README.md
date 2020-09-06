@@ -1,6 +1,7 @@
 ![npm version](https://img.shields.io/npm/v/mediakitjs?style=flat-square)  ![size](https://badgen.net/bundlephobia/minzip/mediakitjs?style=flat-square) ![licence](https://img.shields.io/npm/l/mediakitjs?style=flat-square)
 ![mediakit](img/mediakitLogo.png)
 Stop media elements from playing all at once. Control them with a set of universal functions.
+[Try it out.](https://tj-mc.github.io/mediakit/)
 
 #### 💭 Problem
 Many websites require embedded audio and video, either through HTML5 players or third party iFrames. However, managing these players can be difficult. Many audio players and iFrames can play at once, and each type of media has a different API, leading to an unpleasent experience for the user and developer.
@@ -108,5 +109,4 @@ mk.create(
 - Add support for `seek()`
 - Implement `stop()`. Current version mirrors `pause()`
 - Emit mediakit events. eg: `mkPaused`, `mkPlayed` 
-- Host demo site
 - Add tests
